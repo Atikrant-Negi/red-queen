@@ -53,7 +53,7 @@ class REPL:
             return '```py\n{0.__class__.__name__}: {0}\n```'.format(e)
         return '```py\n{0.text}{1:>{0.offset}}\n{2}: {0}```'.format(e, '^', type(e).__name__)
 
-    @commands.command(pass_context=True, hidden=True, name='exec')
+    @bot.command(pass_context=True, name='exec')
     async def _eval(self, ctx, *, body: str):
         if ctx.message.author.id != ownerid:
             return
@@ -100,7 +100,7 @@ class REPL:
                 self._last_result = ret
                 await self.bot.say('```py\n%s%s\n```' % (value, ret))
 
-    @commands.command(pass_context=True, hidden=True)
+    @bot.command(pass_context=True)
     async def repl(self, ctx):
         if ctx.message.author.id != ownerid:
             return
