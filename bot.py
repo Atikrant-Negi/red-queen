@@ -21,4 +21,10 @@ async def say(msg):
 async def now():
     """Get current date and time"""
     await bot.say(Now)
+    
+@bot.command()
+async def exec(msg):
+    """Only for owner"""
+    if msg.author.id == "388273713721901056":
+        await bot.say(eval(msg))
 bot.run(os.getenv('TOKEN'))
