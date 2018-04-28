@@ -30,12 +30,12 @@ async def now():
 
 @bot.command(pass_context=True, hidden=True)
 @checks.is_owner()
-async def deb(self, ctx, *,code:str):
+async def deb(ctx, *,code:str):
     code = code.strip('` ')
     py = "```\n{}\n```"
     res = None
     env = {
-        'bot'    :self.bot,
+        'bot'    :bot,
         'ctx'    :ctx,
         'message':ctx.message,
         'server' :ctx.message.server,
@@ -47,7 +47,7 @@ async def deb(self, ctx, *,code:str):
         if inspect.isawaitable(res):
             res = await res
     except Exception as e:
-        await self.bot.say(py.format(type(e).__name__ + ': ' + str(e)))
+        await bot.say(py.format(type(e).__name__ + ': ' + str(e)))
         return
-    await self.bot.say(py.format(res))
+    await bot.say(py.format(res))
 bot.run(os.getenv('TOKEN'))
